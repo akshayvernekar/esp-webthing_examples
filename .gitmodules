@@ -1,6 +1,3 @@
-[submodule "RGBLamp/components/esp-webthing"]
-	path = RGBLamp/components/esp-webthing
-	url = https://github.com/akshayvernekar/esp-webthing.git
 [submodule "LEDBulb/components/esp-webthing"]
 	path = LEDBulb/components/esp-webthing
 	url = https://github.com/akshayvernekar/esp-webthing.git
