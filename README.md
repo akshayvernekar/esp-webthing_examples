@@ -3,7 +3,7 @@ Example projects using the esp-webthing component
 
 ## Setup
 
-Make sure you have setup the development enviromnet for esp-idf . You can follow the set[s mentioned here[https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html] if you havent.
+Make sure you have setup the development enviromnet for esp-idf . You can follow the set[s mentioned [here](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) if you havent.
 
 ## Downloading
 
