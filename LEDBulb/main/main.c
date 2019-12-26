@@ -32,7 +32,7 @@
 #define EXAMPLE_ESP_MAXIMUM_RETRY   10
 
 //Blink GPIO is set from make menuconfig. You can change it any value , default is GPIO2
-#define BLINK_GPIO                  CONFIG_BLINK_GPIO
+#define LED_GPIO                  CONFIG_LED_GPIO
 
 /* FreeRTOS event group to signal when we are connected*/
 static EventGroupHandle_t s_wifi_event_group;
@@ -105,11 +105,11 @@ void onOffCallback(ThingPropertyValue value)
     ESP_LOGI(TAG,"Light was turned %s",value.boolean ? "on" : "off");
     if(value.boolean)
     {
-        gpio_set_level(BLINK_GPIO, 1);
+        gpio_set_level(LED_GPIO, 1);
     }
     else
     {
-        gpio_set_level(BLINK_GPIO, 0);  
+        gpio_set_level(LED_GPIO, 0);  
     }
 }
 
@@ -124,9 +124,9 @@ void app_main()
     ESP_ERROR_CHECK(ret);
 
     // Setup GPIO
-    gpio_pad_select_gpio(BLINK_GPIO);
+    gpio_pad_select_gpio(LED_GPIO);
     /* Set the GPIO as a push/pull output */
-    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
+    gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
 
     ThingPropertyValue defOn ;
     defOn.boolean = false;

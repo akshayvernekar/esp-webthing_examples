@@ -3,7 +3,6 @@
 
 // Configure these based on your project needs ********
 #define LED_RMT_TX_CHANNEL RMT_CHANNEL_0
-#define LED_RMT_TX_GPIO 14
 // ****************************************************
 
 #define BITS_PER_LED_CMD 24 

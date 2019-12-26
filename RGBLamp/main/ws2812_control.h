@@ -2,8 +2,13 @@
 #define WS2812_CONTROL_H
 #include <stdint.h>
 
+// Set the total number of LEDs as per your hardware
 #ifndef NUM_LEDS
 #define NUM_LEDS 8
+#endif
+
+#ifndef LED_RMT_TX_GPIO
+#define LED_RMT_TX_GPIO 14
 #endif
 
 // This structure is used for indicating what the colors of each LED should be set to.
