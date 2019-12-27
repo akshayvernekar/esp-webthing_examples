@@ -17,10 +17,11 @@ NeoPixel: The example project uses GPIO14 as NeoPixel's TX pin , change this by 
 ### Eclipse:
 Open and flash the project using eclipse as mentioned [here](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/eclipse-setup.html).
 
-###Command line:
-Make sure tool chain and IDF_PATH are set properly. 
-Enter the command `make menuconfig` and choose EXIT in case you dont wish to change the defaults.
-Enter the command `make flash monitor` to build and flash the firmware.
+### Command line:
+Make sure tool chain and IDF_PATH are set properly. <br/>
+Enter the command `idf.py menuconfig` and choose EXIT in case you dont wish to change the defaults.<br/>
+Enter the command `idf.py build` to build <br/>
+Enter the command `idf.py -p PORT [-b BAUD] flash` to flash<br/>
 
 *Code in this repository is in the Public Domain (or CC0 licensed, at your option.)
 Unless required by applicable law or agreed to in writing, this
