@@ -2,6 +2,8 @@ RGB Lamp web thing.
 ====================
 This project tries to emulate a RGB LED lamp using `esp-webthing` component on Esp32. After completion you should be able to Turn on/off and change the color of the LED Ring from the things console.
 
+![Alt Text](../images/rgbLight.GIF)
+
 ## Components:
 * ESP-32 WROVER module or any other Esp development board.
 * NeoPixel Ring - 8 x WS2812.
