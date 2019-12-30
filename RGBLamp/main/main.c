@@ -24,11 +24,7 @@
 #include "ws2812_control.h"
 #include <stdlib.h>
 
-/* The examples use WiFi configuration that you can set via 'make menuconfig'.
-
-   If you'd rather not, just change the below entries to strings with
-   the config you want - ie #define EXAMPLE_WIFI_SSID "mywifissid"
-*/
+// Replace with your ssid and password
 #define EXAMPLE_ESP_WIFI_SSID      "YOUR_SSID"
 #define EXAMPLE_ESP_WIFI_PASS      "YOUR_PASSWORD"
 
@@ -105,8 +101,8 @@ void wifi_init_sta()
 
 void set_led_color(char* color)
 {
-	if(!color && (strlen(color)!= 7))
-		return;
+    if(!color && (strlen(color)!= 7))
+        return;
 
     char GRB[7] = {0};
     GRB[0] = color[3];
@@ -136,7 +132,7 @@ void onOffCallback(ThingPropertyValue value)
     ESP_LOGI(TAG,"Light was turned %s",value.boolean ? "on" : "off");
     if(value.boolean)
     {
-    	set_led_color(currentColor.string);
+        set_led_color(currentColor.string);
     }
     else
     {
@@ -167,24 +163,28 @@ void app_main()
     }
     ESP_ERROR_CHECK(ret);
 
-    ThingPropertyValue defOn ;
-    defOn.boolean = false;
-
-    ThingPropertyValue defBrightness ;
-    defBrightness.number = 50;
-
-    //set default color
-    currentColor.string = "#ffffff";
-
     Thing* rgbDevice = createThing("RGB Lamp",&deviceTypes);
 
-    ThingProperty* property = createProperty(eON_OFF,defOn,false,eNONE,0,0,&onOffCallback);
+    PropertyInfo on_info = {
+        .type = eON_OFF,
+        .value.boolean = false,
+    } ;
+    ThingProperty* property = createProperty("Power",on_info,&onOffCallback);
     addProperty(rgbDevice,property);
 
-    property = createProperty(eCOLOR,currentColor,false,eNONE,0,0,&colorChangeCallback);
+    currentColor.string = "#ffffff";
+    PropertyInfo color_info = {
+        .type = eCOLOR,
+        .value = currentColor,
+    } ;
+    property = createProperty("Light Color",color_info,&colorChangeCallback);
     addProperty(rgbDevice,property);
 
-    property = createProperty(eBRIGHTNESS,defBrightness,false,eNONE,0,0,&brightnessCallback);
+    PropertyInfo brightness_info = {
+        .type = eBRIGHTNESS,
+        .value.number = 50,
+    } ;
+    property = createProperty("Brightness",brightness_info,&brightnessCallback);
     addProperty(rgbDevice,property);
 
     initAdapter(rgbDevice);
@@ -193,5 +193,4 @@ void app_main()
     //wait for device to connect to network
     xEventGroupWaitBits(s_wifi_event_group, WIFI_CONNECTED_BIT, false, true, portMAX_DELAY);
     startAdapter();
-   // cleanUpThing(rgbDevice);
 }

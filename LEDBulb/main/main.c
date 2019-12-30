@@ -43,7 +43,7 @@ const int WIFI_CONNECTED_BIT = BIT0;
 
 static const char *TAG = "web thing";
 static int s_retry_num = 0;
-static const char* deviceTypes[] = {"Light", "OnOffSwitch", "ColorControl", NULL};
+static const char* deviceTypes[] = {"Light", "OnOffSwitch", NULL};
 
 static esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -133,7 +133,11 @@ void app_main()
 
     Thing* bulb = createThing("Light Bulb",&deviceTypes);
 
-    ThingProperty* property = createProperty(eON_OFF,defOn,false,eNONE,0,0,&onOffCallback);
+    PropertyInfo on_info = {
+        .type = eON_OFF,
+        .value.boolean = false,
+    } ;
+    ThingProperty* property = createProperty("Power",on_info,&onOffCallback);
     addProperty(bulb,property);
 
     initAdapter(bulb);
@@ -142,5 +146,4 @@ void app_main()
     //wait for device to connect to network
     xEventGroupWaitBits(s_wifi_event_group, WIFI_CONNECTED_BIT, false, true, portMAX_DELAY);
     startAdapter();
-   // cleanUpThing(bulb);
 }
